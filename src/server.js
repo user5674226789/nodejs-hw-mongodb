@@ -7,9 +7,9 @@ import contactsRouter from './routes/contacts.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
 const logger = pino();
 const pinoMiddlewar = pinoHttp({ logger });
-
 export default function setupServer() {
   const app = express();
 
