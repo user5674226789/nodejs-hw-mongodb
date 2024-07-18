@@ -12,17 +12,17 @@ const contactsSchema = new Schema(
     },
     email: {
       type: String,
-      required: true | false,
-    },
-    contactType: {
-      type: String,
-      required: true,
-      enum: ['work', 'home', 'personal'],
-      default: 'personal',
+      default: 'user@gmail.com',
     },
     isFavourite: {
       type: Boolean,
       default: false,
+    },
+    contactType: {
+      type: String,
+      enum: ['home', 'personal'],
+      required: true,
+      default: 'home',
     },
   },
   {
