@@ -1,56 +1,32 @@
-// src/server.js
-
+import 'dotenv/config';
 import express from 'express';
-import pino from 'pino-http';
 import cors from 'cors';
+import pinoHttp from 'pino-http';
+import pino from 'pino';
+import contactsRouter from './routes/contacts.js';
 import dotenv from 'dotenv';
-import {
-    getContacts,
-    getContact
-} from './controllers/contactsController.js';
-
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const logger = pino();
+const pinoMiddlewar = pinoHttp({ logger });
 
-export const setupServer = () => {
-    const app = express();
+export default function setupServer() {
+  const app = express();
 
-    app.use(express.json());
-    app.use(cors());
+  app.use(cors());
 
-    app.use(pino({
-        transport: {
-            target: 'pino-pretty',
-        },
-    }));
+  app.use(express.json());
 
-    app.get('/', (req, res) => {
-        res.json({
-            message: 'Hello world!',
-        });
-    });
+  app.use(pinoMiddlewar);
 
-    // Реєстрація роута GET /contacts
-    app.get('/contacts', getContacts);
+  app.use('/contacts', contactsRouter);
 
-    // Реєстрація роута GET /contacts/:contactId
-    app.get('/contacts/:contactId', getContact);
+  app.use((req, res, next) => {
+    res.status(404).json({ message: 'Not found' });
+  });
 
-    app.use('*', (req, res, next) => {
-        res.status(404).json({
-            message: 'Not found',
-        });
-    });
-
-    app.use((err, req, res, next) => {
-        res.status(500).json({
-            message: 'Something went wrong',
-            error: err.message,
-        });
-    });
-
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-};
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}
