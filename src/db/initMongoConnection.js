@@ -1,14 +1,11 @@
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import Contact from '../models/contact';
 
 dotenv.config();
 
 async function initMongoConnection() {
   const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB } = process.env;
-  const user = MONGODB_USER;
-  const pwd = MONGODB_PASSWORD;
-  const url = MONGODB_URL;
-  const db = MONGODB_DB;
 
   const DB_URI = `mongodb+srv://${user}:${pwd}@${url}/${db}?retryWrites=true&w=majority`;
 
