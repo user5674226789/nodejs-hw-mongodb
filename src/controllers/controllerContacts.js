@@ -3,13 +3,6 @@ import { getAllContacts, getContactById } from '../services/contacts.js';
 async function getContacts(req, res) {
   try {
     const contacts = await getAllContacts();
-    if (!contacts || contacts.length === 0) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'Contacts not found',
-        data: [],
-      });
-    }
     res.status(200).json({
       status: 'success',
       message: 'Successfully found contacts!',
