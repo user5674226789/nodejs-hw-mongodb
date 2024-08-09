@@ -8,7 +8,7 @@
     "start": "node ./src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "author": "Illia Pryimak",
+  "author": "user5674226789",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
