@@ -11,7 +11,7 @@
     "preview-docs": "redocly preview-docs"
   },
   "keywords": [],
-  "author": "",
+  "author": "user5674226789",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.2.0",
