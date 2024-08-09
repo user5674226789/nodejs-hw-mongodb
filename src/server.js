@@ -1,32 +1,35 @@
-import 'dotenv/config';
 import express from 'express';
+import pino from 'pino-http';
 import cors from 'cors';
-import pinoHttp from 'pino-http';
-import pino from 'pino';
-import contactsRouter from './routes/contacts.js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { env } from './utils/env.js';
+import contactsRouter from './routers/contacts.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
+const PORT = Number(env('PORT', '3000'));
 
-const logger = pino();
-const pinoMiddlewar = pinoHttp({ logger });
-export default function setupServer() {
+export const setupServer = () => {
   const app = express();
-
-  app.use(cors());
 
   app.use(express.json());
 
-  app.use(pinoMiddlewar);
+  app.use(cors());
 
-  app.use('/contacts', contactsRouter);
+  app.use(
+    pino({
+      transport: {
+        target: 'pino-pretty',
+      },
+    }),
+  );
 
-  app.use((req, res, next) => {
-    res.status(404).json({ message: 'Not found' });
+  app.use(contactsRouter);
+
+  app.use('*', notFoundHandler);
+
+  app.use(errorHandler);
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
-
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server started on port ${PORT}`);
-  });
-}
+};
