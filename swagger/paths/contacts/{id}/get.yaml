@@ -1,0 +1,27 @@
+# /swagger/paths/contacts/{id}/get.yaml
+
+tags:
+  - contacts
+summary: Get a contact by ID
+operationId: getContactById
+description: Retrieve a specific contact by its unique ID.
+security:
+  - bearerAuth: []
+parameters:
+  - name: contactId
+    in: path
+    required: true
+    description: ID of the contact to fetch
+    schema:
+      type: string
+responses:
+  '200':
+    description: Contact found
+    content:
+      application/json:
+        schema:
+          $ref: '../../../components/schemas/contact.yaml'
+  '404':
+    $ref: '../../../components/responses/NotFound.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'

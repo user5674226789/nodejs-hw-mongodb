@@ -1,60 +1,46 @@
-import Contact from "../models/contacts.js";
-import { calculatePaginationData } from "../utils/calculatePaginationData.js";
-import { SORT_ORDER } from "../constants/index.js";
-export const fetchAllContacts = async ({
-  page = 1,
-  perPage = 10,
-  sortOrder = SORT_ORDER.ASC,
-  sortBy = '_id'
+// src/services/contacts.js
+
+import { ContactsCollection } from '../db/models/contact.js';
+
+export const getAllContacts = async ({
+  page,
+  perPage,
+  sortBy,
+  sortOrder,
+  type,
+  isFavourite,
+  userId,
 }) => {
-  const limit = perPage;
-  const skip = (page - 1) * perPage;
-  const contactsQuery = Contact.find();
-  const contactsCount = await Contact.find()
-    .merge(contactsQuery)
-    .countDocuments();
-  const contacts = await contactsQuery
-    .skip(skip)
-    .limit(limit)
-    .sort({ [sortBy]: sortOrder })
-    .exec();
+  const query = { userId };
+  if (type) query.contactType = type;
+  if (isFavourite !== undefined) query.isFavourite = isFavourite;
 
-  const paginationData = calculatePaginationData(contactsCount, perPage, page);
-  return {
-    data: contacts,
-    ...paginationData
-  };
+  const contacts = await ContactsCollection.find(query)
+    .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
+    .skip((page - 1) * perPage)
+    .limit(perPage);
+
+  const totalItems = await ContactsCollection.countDocuments(query);
+
+  return { contacts, totalItems };
 };
 
-export const fetchContactById = async (contactId) => {
-    const contact = await Contact.findById(contactId);
-    return contact;
+export const getContactById = async (contactId, userId) => {
+  return await ContactsCollection.findOne({ _id: contactId, userId });
 };
 
-export const createContact = async (contactData) => {
-    try {
-        const newContact = new Contact(contactData);
-        await newContact.save();
-        return newContact;
-    } catch (error) {
-        console.error('Error while creating a new contact:', error);
-    }
+export const addContact = async (contactData) => {
+  return await ContactsCollection.create(contactData);
 };
 
-export const updateContact = async (contactId, contactData) => {
-    try {
-        const updatedContact = await Contact.findByIdAndUpdate(contactId, contactData, { new: true });
-        return updatedContact;
-    } catch (error) {
-        console.error(`Error while updating contact with id ${contactId}:`, error);
-    }
+export const patchContact = async (contactId, contactData, userId) => {
+  return await ContactsCollection.findOneAndUpdate(
+    { _id: contactId, userId },
+    contactData,
+    { new: true },
+  );
 };
 
-export const deleteContact = async (contactId) => {
-    try {
-        const deletedContact = await Contact.findByIdAndDelete(contactId);
-        return deletedContact;
-    } catch (error) {
-        console.error(`Error while deleting contact with id ${contactId}:`, error);
-    }
+export const removeContact = async (contactId, userId) => {
+  return await ContactsCollection.findOneAndDelete({ _id: contactId, userId });
 };
