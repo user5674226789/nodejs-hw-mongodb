@@ -1,0 +1,55 @@
+tags:
+  - Contacts
+summary: Get all contacts
+operationId: getAllContacts
+description: 'Retrieve all contacts with optional filters, sorting, and pagination'
+security:
+  - bearerAuth: []
+parameters:
+  - name: page
+    in: query
+    description: The page number for pagination
+    required: false
+    schema:
+      type: integer
+      example: 1
+  - name: perPage
+    in: query
+    description: The number of contacts per page
+    required: false
+    schema:
+      type: integer
+      example: 10
+  - name: sortBy
+    in: query
+    description: Field to sort the contacts by
+    required: false
+    schema:
+      type: string
+      example: name
+  - name: sortOrder
+    in: query
+    description: The order of sorting (asc/desc)
+    required: false
+    schema:
+      type: string
+      enum: [asc, desc]
+      example: asc
+  - name: contactType
+    in: query
+    description: Filter contacts by type
+    required: false
+    schema:
+      type: string
+      enum: [home, personal]
+  - name: isFavourite
+    in: query
+    description: Filter contacts by favourite status
+    required: false
+    schema:
+      type: boolean
+responses:
+  '200':
+    $ref: '../../components/responses/200.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
