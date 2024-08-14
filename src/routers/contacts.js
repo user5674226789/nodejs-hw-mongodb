@@ -5,14 +5,14 @@ import {
   getContactByIdController,
   getContactsController,
   patchContactController,
-} from '../controllers/contacts.js';
+} from '../controllers/controllerContacts.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import {
   createContactSchema,
   updateContactSchema,
-} from '../validation/contacts.js';
+} from '../validation/contact.js';
 
 const router = Router();
 
