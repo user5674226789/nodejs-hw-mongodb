@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  getContactsController,
   createContactController,
   deleteContactController,
   getContactByIdController,
@@ -13,6 +14,7 @@ import {
   createContactSchema,
   updateContactSchema,
 } from '../validation/contact.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 
@@ -42,5 +44,10 @@ router.delete(
   isValidId,
   ctrlWrapper(deleteContactController),
 );
+
+
+router.use(authenticate);
+
+router.get('/', ctrlWrapper(getContactsController));
 
 export default router;
