@@ -25,3 +25,4 @@ export const createContactSchema = Joi.object ({
     contactType: Joi.string().valid('work', 'home', 'personal'),
     isFavourite: Joi.boolean(),
   });
+  5
