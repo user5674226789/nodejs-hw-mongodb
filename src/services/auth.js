@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import crypto from 'node:crypto';
 import createHttpError from 'http-errors';
-import { ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL } from '../constants/index.js';
+import { ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL } from '../utils/index.js';
 import { SessionsCollection } from '../db/models/Session.js';
-import { UsersCollection } from '../db/models/user.js';
+import { UserCollection } from '../db/models/user.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({
@@ -13,14 +13,14 @@ export const registerUser = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
-  return await UsersCollection.create({
+  return await UserCollection.create({
     ...payload,
     password: encryptedPassword,
   });
 };
 
 export const loginUser = async (payload) => {
-  const user = await UsersCollection.findOne({ email: payload.email });
+  const user = await UserCollection.findOne({ email: payload.email });
   if (!user) {
     throw createHttpError(404, 'User not found');
   }

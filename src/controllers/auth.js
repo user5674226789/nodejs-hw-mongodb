@@ -1,4 +1,4 @@
-import { REFRESH_TOKEN_TTL } from '../constants/index.js';
+import { REFRESH_TOKEN_TTL } from '../utils/index.js';
 import {
   loginUser,
   logoutUser,

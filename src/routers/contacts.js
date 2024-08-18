@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import {
-  getContactsController,
   createContactController,
   deleteContactController,
   getContactByIdController,
@@ -47,7 +46,5 @@ router.delete(
 
 
 router.use(authenticate);
-
-router.get('/', ctrlWrapper(getContactsController));
 
 export default router;

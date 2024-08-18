@@ -1,7 +1,4 @@
-import { request } from "express";
-import { required } from "joi";
 import { model, Schema } from "mongoose";
-
 const userSchema = new Schema (
 {
    name: {
