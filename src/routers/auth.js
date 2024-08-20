@@ -8,22 +8,21 @@ import { loginUserController } from "../controllers/auth.js";
 import { registerUserSchema } from "../validation/auth.js";
 import { loginUserSchema} from "../validation/auth.js";
 
-
-const router = Router()
+const router = Router();
 
 router.post(
-   validateBody(registerUserSchema),
-   ctrlWrapper(registerUserController),
+  '/register',
+  validateBody(registerUserSchema),
+  ctrlWrapper(registerUserController),
 );
 
 router.post(
-    validateBody(loginUserSchema),
-    ctrlWrapper(loginUserController),
-  );
-
-  router.post('/logout', ctrlWrapper(logoutUserController));
-
+  '/login',
+  validateBody(loginUserSchema),
+  ctrlWrapper(loginUserController),
+);
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
-export default router
+router.post('/logout', ctrlWrapper(logoutUserController));
+export default router;
