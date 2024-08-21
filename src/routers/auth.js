@@ -11,13 +11,13 @@ import { loginUserSchema} from "../validation/auth.js";
 const router = Router();
 
 router.post(
-  '/register',
+  '/auth/register',
   validateBody(registerUserSchema),
   ctrlWrapper(registerUserController),
 );
 
 router.post(
-  '/login',
+  '/auth/login',
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserController),
 );
