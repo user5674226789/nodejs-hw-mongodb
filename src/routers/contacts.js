@@ -48,7 +48,4 @@ router.delete(
   ctrlWrapper(deleteContactController),
 );
 
-
-router.use(authenticate);
-
 export default router;
