@@ -9,7 +9,6 @@ import {
 import { isValidId } from '../middlewares/isValidId.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import {authenticate} from '../middlewares/authenticate'
 import {
   createContactSchema,
   updateContactSchema,
