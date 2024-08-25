@@ -23,6 +23,9 @@ const contactsSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    userId : {
+      type: String,
+    }
   },
   {
     timestamps: true,
