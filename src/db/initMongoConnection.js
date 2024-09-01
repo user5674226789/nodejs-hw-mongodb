@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import Contact from "../models/contact.js";
 
 dotenv.config();
 
