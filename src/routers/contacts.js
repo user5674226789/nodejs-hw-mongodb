@@ -14,6 +14,7 @@ import {
   updateContactSchema,
 } from '../validation/contact.js';
 import { authenticate } from '../middlewares/authenticate.js';
+import { upload } from '../middlewares/multer.js';
 
 const router = Router();
 router.use(authenticate);
@@ -27,14 +28,22 @@ router.get(
 );
 
 router.post(
-  '/contacts',
+  '/',
+  upload.single('photo'),
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
 
+router.put(
+  '/:studentId',
+  upload.single('photo'), 
+  validateBody(createStudentSchema),
+  ctrlWrapper(upsertStudentController),
+);
+
 router.patch(
-  '/contacts/:contactId',
-  isValidId,
+  '/:studentId',
+  upload.single('photo'), 
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
