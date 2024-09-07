@@ -9,7 +9,7 @@ import {
   TEMPLATES_DIR,
 } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/Session.js';
-import { UserCollection } from '../db/models/User.js';
+import { UsersCollection } from '../db/models/User.js';
 import { env } from '../utils/env.js';
 import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
@@ -17,21 +17,21 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 export const registerUser = async (payload) => {
-  const user = await UserCollection.findOne({
+  const user = await UsersCollection.findOne({
     email: payload.email,
   });
   if (user) throw createHttpError(409, 'Email in use');
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
-  return await UserCollection.create({
+  return await UsersCollection.create({
     ...payload,
     password: encryptedPassword,
   });
 };
 
 export const loginUser = async (payload) => {
-  const user = await UserCollection.findOne({ email: payload.email });
+  const user = await UsersCollection.findOne({ email: payload.email });
   if (!user) {
     throw createHttpError(404, 'User not found');
   }
@@ -98,7 +98,7 @@ export const logoutUser = async (sessionId) => {
 };
 
 export const sendResetToken = async (email) => {
-  const user = await UserCollection.findOne({ email });
+  const user = await UsersCollection.findOne({ email });
   if (!user) {
     throw createHttpError(404, 'User not found');
   }
@@ -159,7 +159,7 @@ export const resetPassword = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
-  await UserCollection.updateOne(
+  await UsersCollection.updateOne(
     { _id: user._id },
     { password: encryptedPassword },
   );
