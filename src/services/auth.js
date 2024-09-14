@@ -9,7 +9,7 @@ import {
   TEMPLATES_DIR,
 } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/Session.js';
-import { UsersCollection } from '../db/models/User.js';
+import { UsersCollection } from '../db/models/user.js';
 import { env } from '../utils/env.js';
 import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
