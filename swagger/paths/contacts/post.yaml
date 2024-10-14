@@ -1,8 +1,8 @@
 tags:
   - Contacts
-summary: Create contact
-operationId: createContact
-description: 'Create a contact with payload'
+summary: Create contacts
+operationId: createContacts
+description: 'Create a Contact with payload'
 security:
   - bearerAuth: []
 requestBody:
@@ -13,33 +13,30 @@ requestBody:
         required:
           - name
           - phoneNumber
+          - email
+          - isFavourite
           - contactType
-          - userId
+          - photo
         properties:
           name:
-            description: "Contact's name"
+            description: "Contacts name"
             type: string
-            example: 'Oleh Tkachuk'
+            example: 'Jpni Dep'
           phoneNumber:
-            description: "Contact's phonenumber"
+            description: "Contacts number"
             type: string
-            example: '+380995554456'
+            example: 0992320987
           email:
-            description: "Contact's email"
-            type: string
-            example: 'dmytro3@example.com'
+            description: "Contacts email"
+            type: string  
+          isFavourite:  
+            description: 'Is Contact favorite'
+            type: boolean
+            example: false
           contactType:
-            description: 'What type of contact is this'
+            description: 'Contact type'
             type: string
             enum: ['work', 'home', 'personal']
-          isFavourite:
-            description: 'Whether is contact favourite'
-            type: boolean
-            example: true
-          photo:
-            description: "Link to contact's photo"
-            type: string
-            format: binary
 responses:
   '201':
     description: Creates a contact
@@ -57,7 +54,7 @@ responses:
               example: 201
             message:
               type: string
-              example: Successfully created a contact!
+              example: Successfully created a student!
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
