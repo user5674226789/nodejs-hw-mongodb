@@ -14,36 +14,36 @@ requestBody:
           - name
           - phoneNumber
           - contactType
+          - userId
         properties:
           name:
             description: "Contact's name"
             type: string
-            example: 'John Doe'
+            example: 'Oleh Tkachuk'
           phoneNumber:
-            description: "Contact's phone number"
+            description: "Contact's phonenumber"
             type: string
-            example: 324-84-15
+            example: '+380995554456'
           email:
             description: "Contact's email"
             type: string
-            example: rudolf@mail.com
-          isFavorite:
-            description: 'Favorite contact'
-            type: boolean
-            example: true
+            example: 'dmytro3@example.com'
           contactType:
-            description: 'Which group contact belongs to'
+            description: 'What type of contact is this'
             type: string
             enum: ['work', 'home', 'personal']
-            example: 'work'
+          isFavourite:
+            description: 'Whether is contact favourite'
+            type: boolean
+            example: true
           userId:
-            description: "Contact's parent id"
+            description: "User's id"
             type: string
-            example: 66fe6d0b5b7ffb5c70dfd498
+            example: 66b68bf3715215e8a074219e
           photo:
             description: "Link to contact's photo"
             type: string
-            format: binary
+            example: https://res.cloudinary.com/dim9kuj10/image/upload/v1723465603/daaqiw5j255soydp6dsu.jpg
 responses:
   '201':
     description: Creates a contact
@@ -64,6 +64,6 @@ responses:
               example: Successfully created a contact!
             data:
               type: object
-              $ref: '../components/schemas/contact.yaml'
+              $ref: '../../components/schemas/contact.yaml'
   '401':
-    $ref: '../components/responses/401.yaml'
+    $ref: '../../components/responses/401.yaml'

@@ -11,7 +11,10 @@
   },
   "servers": [
     {
-      "url": "https://nodejs-hw-mongodb-15-qr42.onrender.com"
+      "url": "http://localhost:3000"
+    },
+    {
+      "url": "https://example.com/api/v1"
     }
   ],
   "tags": [
@@ -511,7 +514,7 @@
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
-                    "format": "binary"
+                    "example": "https://res.cloudinary.com/dim9kuj10/image/upload/v1723465603/daaqiw5j255soydp6dsu.jpg"
                   }
                 }
               }

@@ -3,36 +3,37 @@ required:
   - _id
   - name
   - phoneNumber
-  - contactType
   - userId
-
 properties:
   _id:
     description: "Contact's id"
     type: string
-    example: 66d1a08277df1f701522be3a
+    example: 66b906fac98596fbad9e2677
   name:
     description: "Contact's name"
     type: string
-    example: 'John Doe'
+    example: 'Oleh Tkachuk'
   phoneNumber:
-    description: "Contact's phone number"
+    description: "Contact's phonenumber"
     type: string
-    example: 324-84-15
+    example: '+380995554456'
   email:
     description: "Contact's email"
     type: string
-    example: buhaichuk@mail.com
-  isFavorite:
-    description: 'Favorite contact'
-    type: boolean
-    example: true
+    example: 'dmytro3@example.com'
   contactType:
-    description: 'Which group contact belongs to'
+    description: 'What type of contact is this'
     type: string
     enum: ['work', 'home', 'personal']
-    example: 'work'
+  isFavourite:
+    description: 'Whether is contact favourite'
+    type: boolean
+    example: true
   userId:
-    description: "Contact's parent id"
+    description: "User's id"
     type: string
-    example: 66d1a08277df1f701522be39
+    example: 66b68bf3715215e8a074219e
+  photo:
+    description: "Link to contact's photo"
+    type: string
+    example: https://res.cloudinary.com/dim9kuj10/image/upload/v1723465603/daaqiw5j255soydp6dsu.jpg

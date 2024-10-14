@@ -29,10 +29,16 @@ parameters:
       enum: ['asc', 'desc']
       example: 'asc'
   - in: query
+    name: isFavourite
+    schema:
+      type: boolean
+      example: false
+  - in: query
     name: contactType
     schema:
       type: string
-      example: 'home'
+      enum: ['work', 'home', 'personal']
+      example: home
 responses:
   '200':
     description: Successfully found contacts!
@@ -54,7 +60,7 @@ responses:
             data:
               type: object
               required:
-                - contacts
+                - data
                 - page
                 - perPage
                 - totalItems
@@ -65,24 +71,24 @@ responses:
                 data:
                   type: array
                   items:
-                    $ref: '../components/schemas/contact.yaml'
+                    $ref: '../../components/schemas/contact.yaml'
                 page:
                   type: number
-                  example: 2
+                  example: 1
                 perPage:
                   type: number
-                  example: 4
+                  example: 10
                 totalItems:
                   type: number
                   example: 4
                 totalPages:
                   type: number
-                  example: 4
+                  example: 1
                 hasNextPage:
                   type: boolean
                   example: false
                 hasPreviousPage:
                   type: boolean
-                  example: true
+                  example: false
   '401':
-    $ref: '../components/responses/401.yaml'
+    $ref: '../../components/responses/401.yaml'
