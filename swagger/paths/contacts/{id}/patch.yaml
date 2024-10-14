@@ -27,17 +27,14 @@ requestBody:
             description: "Contact's phone number"
             type: string
             example: '0998888888'
-          email:
-            description: "Contact's email"
-            type: string
-          isFavourite:  
-            description: 'Is contact a favorite'
-            type: boolean
-            example: true
           contactType:
             description: 'Type of contact'
             type: string
             enum: ['work', 'home', 'personal']
+          photo:
+              description: "Link to contact's photo"
+              type: string
+              format: binary
 responses:
   '200':
     description: Successfully updated contact

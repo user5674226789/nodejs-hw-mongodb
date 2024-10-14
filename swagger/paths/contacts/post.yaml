@@ -13,8 +13,6 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - email
-          - isFavourite
           - contactType
           - photo
         properties:
@@ -26,17 +24,14 @@ requestBody:
             description: "Contacts number"
             type: string
             example: 0992320987
-          email:
-            description: "Contacts email"
-            type: string  
-          isFavourite:  
-            description: 'Is Contact favorite'
-            type: boolean
-            example: false
           contactType:
             description: 'Contact type'
             type: string
             enum: ['work', 'home', 'personal']
+          photo:
+              description: "Link to contact's photo"
+              type: string
+              format: binary
 responses:
   '201':
     description: Creates a contact

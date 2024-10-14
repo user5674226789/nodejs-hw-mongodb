@@ -470,8 +470,6 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "email",
-                  "isFavourite",
                   "contactType",
                   "photo"
                 ],
@@ -486,15 +484,6 @@
                     "type": "string",
                     "example": 992320987
                   },
-                  "email": {
-                    "description": "Contacts email",
-                    "type": "string"
-                  },
-                  "isFavourite": {
-                    "description": "Is Contact favorite",
-                    "type": "boolean",
-                    "example": false
-                  },
                   "contactType": {
                     "description": "Contact type",
                     "type": "string",
@@ -503,6 +492,11 @@
                       "home",
                       "personal"
                     ]
+                  },
+                  "photo": {
+                    "description": "Link to contact's photo",
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
@@ -644,15 +638,6 @@
                     "type": "string",
                     "example": "0998888888"
                   },
-                  "email": {
-                    "description": "Contact's email",
-                    "type": "string"
-                  },
-                  "isFavourite": {
-                    "description": "Is contact a favorite",
-                    "type": "boolean",
-                    "example": true
-                  },
                   "contactType": {
                     "description": "Type of contact",
                     "type": "string",
@@ -661,6 +646,11 @@
                       "home",
                       "personal"
                     ]
+                  },
+                  "photo": {
+                    "description": "Link to contact's photo",
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
