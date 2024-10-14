@@ -503,11 +503,6 @@
                     "type": "boolean",
                     "example": true
                   },
-                  "userId": {
-                    "description": "User's id",
-                    "type": "string",
-                    "example": "66b68bf3715215e8a074219e"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
@@ -670,11 +665,6 @@
                     "description": "Whether is contact favourite",
                     "type": "boolean",
                     "example": true
-                  },
-                  "userId": {
-                    "description": "User's id",
-                    "type": "string",
-                    "example": "66b68bf3715215e8a074219e"
                   },
                   "photo": {
                     "description": "Link to contact's photo",
