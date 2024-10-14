@@ -454,9 +454,9 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Create contacts",
-        "operationId": "createContacts",
-        "description": "Create a Contact with payload",
+        "summary": "Create contact",
+        "operationId": "createContact",
+        "description": "Create a contact with payload",
         "security": [
           {
             "bearerAuth": []
@@ -475,17 +475,17 @@
                 ],
                 "properties": {
                   "name": {
-                    "description": "Contacts name",
+                    "description": "Contact's name",
                     "type": "string",
-                    "example": "Jpni Dep"
+                    "example": "Oleh Tkachuk"
                   },
                   "phoneNumber": {
-                    "description": "Contacts number",
+                    "description": "Contact's phonenumber",
                     "type": "string",
-                    "example": 992320987
+                    "example": "+380995554456"
                   },
                   "contactType": {
-                    "description": "Contact type",
+                    "description": "What type of contact is this",
                     "type": "string",
                     "enum": [
                       "work",
@@ -522,7 +522,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Successfully created a student!"
+                      "example": "Successfully created a contact!"
                     },
                     "data": {
                       "type": "object",
